@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>牧场时光</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <audio id="bgm" src="assets/bgm.mp3" loop preload="auto"></audio>
+    <audio id="eat-sfx" src="assets/eat.wav" loop preload="auto"></audio>
+    <canvas id="world"></canvas>
+
+    <div id="hud" hidden>
+      <div class="topbar">
+        <button type="button" id="collapse" class="img-btn collapse" title="收起进度" aria-label="收起进度"></button>
+        <div class="chips">
+          <div class="chip grass"><b id="grass-count">x2</b></div>
+          <div class="chip sheep"><b id="sheep-count">x2</b></div>
+          <div class="chip cow"><b id="cow-count">x2</b></div>
+          <div class="chip dog"><b id="dog-count">x0</b></div>
+        </div>
+        <div class="top-actions">
+          <button type="button" id="help" class="img-btn help" title="帮助"></button>
+          <button type="button" id="sound" class="img-btn sound on" title="声音" aria-pressed="true"></button>
+          <button type="button" id="leisure" class="img-btn leisure" title="休闲模式" aria-pressed="false"></button>
+          <button type="button" id="restart" class="img-btn reset" title="重置牧场"></button>
+        </div>
+      </div>
+      <div class="panel-wrap" id="panel-wrap">
+        <div id="manage-panel">
+          <div class="bar-layer cow">
+            <div class="segs" id="cow-segs"></div>
+            <span class="frac" id="cow-frac">0/10</span>
+          </div>
+          <div class="bar-layer sheep">
+            <div class="segs" id="sheep-segs"></div>
+            <span class="frac" id="sheep-frac">0/8</span>
+          </div>
+          <div class="bar-layer dog">
+            <div class="segs" id="unlock-segs"></div>
+            <span class="frac" id="unlock-frac">0/20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="splash">
+      <img class="title-art" src="assets/ui/title.png" alt="牧场时光" />
+      <button type="button" id="start" class="img-btn start" aria-label="开始游戏"></button>
+    </div>
+
+    <div id="overlay" class="hidden" hidden>
+      <div class="help-wrap" id="help-wrap">
+        <img src="assets/ui/help-card.png" alt="玩法说明" />
+        <button type="button" id="help-ok" class="img-btn ok" aria-label="已了解"></button>
+      </div>
+      <div class="confirm-wrap hidden" id="confirm-wrap">
+        <img src="assets/ui/reset-card.png" alt="重置牧场" />
+        <button type="button" id="confirm-no" class="img-btn" aria-label="取消"></button>
+        <button type="button" id="confirm-yes" class="img-btn" aria-label="确定"></button>
+      </div>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>

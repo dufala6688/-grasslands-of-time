@@ -1,0 +1,363 @@
+* {
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #6db36a;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  color: #5a3d28;
+  touch-action: none;
+}
+
+#world {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.img-btn {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: auto;
+}
+
+#hud {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+#hud[hidden] {
+  display: none !important;
+}
+
+.topbar {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.chips,
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chips {
+  flex: 1;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.top-actions {
+  margin-left: auto;
+  gap: 12px;
+  flex: none;
+}
+
+.chip {
+  position: relative;
+  width: 112px;
+  height: 56px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  pointer-events: none;
+  flex: none;
+}
+
+.chip.grass { background-image: url("assets/ui/chip-grass-trim.png"); }
+.chip.sheep { background-image: url("assets/ui/chip-sheep-trim.png"); }
+.chip.cow { background-image: url("assets/ui/chip-cow-trim.png"); }
+.chip.dog { background-image: url("assets/ui/chip-dog-trim.png"); }
+
+.chip b {
+  position: absolute;
+  left: 47%;
+  top: 46%;
+  width: 32%;
+  height: 42%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
+  color: #3e3428;
+  background: #fdf3ea;
+  border-radius: 4px;
+}
+
+.panel-wrap {
+  position: absolute;
+  top: 76px;
+  left: 12px;
+  pointer-events: none;
+}
+
+#manage-panel {
+  position: relative;
+  width: min(272px, 34vw);
+  aspect-ratio: 1088 / 1259;
+  background: url("assets/ui/panel-clean.png") center / contain no-repeat;
+}
+
+#panel-wrap.collapsed #manage-panel {
+  display: none;
+}
+
+.bar-layer {
+  position: absolute;
+  left: 22.8%;
+  width: 73.3%;
+  height: 5.24%;
+  display: flex;
+  align-items: center;
+  gap: 3%;
+  padding: 0 1% 0 1.2%;
+  z-index: 1;
+}
+
+.bar-layer.cow { top: 19.86%; }
+.bar-layer.sheep { top: 47.97%; }
+.bar-layer.dog { top: 75.46%; height: 5.4%; }
+
+.segs {
+  flex: 0 0 76%;
+  display: flex;
+  gap: 2px;
+  height: 64%;
+}
+
+.segs i {
+  flex: 1;
+  border-radius: 3px;
+  background: #e4d3c2;
+}
+
+.segs i:first-child { border-radius: 999px 3px 3px 999px; }
+.segs i:last-child { border-radius: 3px 999px 999px 3px; }
+
+.segs i.on {
+  background: linear-gradient(#8ed56f, #62b84a);
+}
+
+.segs.flash {
+  animation: segFlash 0.35s ease 3;
+}
+
+@keyframes segFlash {
+  50% { filter: brightness(1.4); }
+}
+
+.frac {
+  flex: 1;
+  min-width: 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  color: #3e3428;
+}
+
+#collapse {
+  width: 56px;
+  height: 56px;
+  flex: none;
+  background-image: url("assets/ui/btn-collapse.png");
+  transition: transform 0.2s ease;
+}
+
+.topbar:has(+ .panel-wrap.collapsed) #collapse {
+  transform: rotate(180deg);
+}
+
+#leisure {
+  width: 256px;
+  height: 64px;
+  background-image: url("assets/ui/btn-leisure.png");
+}
+
+#leisure.on {
+  background-image: url("assets/ui/btn-leisure-on.png");
+}
+
+#sound {
+  width: 64px;
+  height: 64px;
+  background-image: url("assets/ui/btn-sound.png");
+}
+
+#sound.muted {
+  background-image: url("assets/ui/btn-mute.png");
+}
+
+#help {
+  width: 64px;
+  height: 64px;
+  background-image: url("assets/ui/btn-help.png");
+}
+
+#restart {
+  width: 256px;
+  height: 64px;
+  margin-left: -116px;
+  background-image: url("assets/ui/btn-reset.png");
+}
+
+#splash {
+  position: fixed;
+  inset: 0;
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  background: url("assets/ui/splash-bg.png") center / cover no-repeat;
+}
+
+#splash.hidden,
+#splash[hidden] {
+  display: none !important;
+}
+
+.title-art {
+  width: min(560px, 86vw);
+  height: auto;
+  pointer-events: none;
+}
+
+#start {
+  width: min(280px, 70vw);
+  height: 86px;
+  background-image: url("assets/ui/btn-start.png");
+}
+
+#start:active {
+  background-image: url("assets/ui/btn-start-press.png");
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(40, 50, 30, 0.35);
+}
+
+#overlay.hidden,
+#overlay[hidden] {
+  display: none !important;
+}
+
+.help-wrap,
+.confirm-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.help-wrap,
+.confirm-wrap {
+  width: min(780px, 94vw);
+}
+
+.help-wrap.hidden,
+.confirm-wrap.hidden {
+  display: none !important;
+}
+
+.help-wrap img,
+.confirm-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+#help-ok {
+  position: absolute;
+  left: 40%;
+  top: 82%;
+  width: 19.44%;
+  height: auto;
+  aspect-ratio: 175 / 62;
+  margin: 0;
+  background-image: url("assets/ui/btn-ok.png");
+}
+
+#help-ok:active {
+  background-image: url("assets/ui/btn-ok-press.png");
+}
+
+.confirm-wrap {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#confirm-no,
+#confirm-yes {
+  position: absolute;
+  height: auto;
+  margin: 0;
+}
+
+#confirm-no {
+  left: 27.78%;
+  top: 59.71%;
+  width: 15.33%;
+  aspect-ratio: 138 / 56;
+  background-image: url("assets/ui/btn-cancel.png");
+}
+
+#confirm-no:active {
+  background-image: url("assets/ui/btn-cancel-press.png");
+}
+
+#confirm-yes {
+  left: 57.89%;
+  top: 60.43%;
+  width: 15.11%;
+  aspect-ratio: 136 / 56;
+  background-image: url("assets/ui/btn-confirm.png");
+}
+
+#confirm-yes:active {
+  background-image: url("assets/ui/btn-confirm-press.png");
+}
+
+@media (max-width: 900px) {
+  .chip { width: 92px; height: 46px; }
+  .chip b { font-size: 12px; }
+  #manage-panel { width: min(220px, 70vw); }
+  .frac { font-size: 10px; }
+  #leisure, #restart { width: 168px; height: 42px; }
+  #restart { margin-left: -76px; }
+  #help, #sound { width: 42px; height: 42px; }
+  #collapse { width: 42px; height: 42px; }
+  .top-actions { gap: 8px; }
+}
